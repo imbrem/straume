@@ -13,7 +13,7 @@ instance : MonadEmit IO IO.FS.Handle ByteArray where
 instance : MonadEmit IO IO.FS.Handle String where
   askFrom src n := do
     let (ba, handle) ← MonadEmit.askFrom src n
-    return (String.fromUTF8Unchecked ba, handle)
+    return (String.fromUTF8! ba, handle)
 
 def readStringN : IO.FS.Handle → Nat → IO (String × IO.FS.Handle)
   := MonadEmit.askFrom

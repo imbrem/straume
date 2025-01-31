@@ -12,7 +12,7 @@ def main : IO Unit := do
   IO.println "Let's read some Jane Austin!\n"
   let (zoink, h₀) ← IO.FS.withFile file (.read)
     (fun handle => Straume.MonadEmit.askFrom handle 38)
-  IO.println s!"{String.fromUTF8Unchecked zoink}\n"
+  IO.println s!"{String.fromUTF8! zoink}\n"
 
   IO.println "Nice! How does that sentence end? Let's find out, with CHUNKS!\n"
   let ((zoink1 : Chunk String), (buff₁, h₁)) ← takeN 80 ("", h₀) 200
